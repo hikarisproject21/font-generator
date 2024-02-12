@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Font Generator</title>
+    <style>
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+@font-face {
+    font-family: 'Best valentina';
+    src: url('Bestvalentina.ttf'); /* Ganti path/to/open-sans.woff2 dengan lokasi file font yang sebenarnya */
+    /* Jika diperlukan, tambahkan format lain seperti woff, ttf, svg, dll */
+}
+@font-face {
+    font-family: 'Rouge Script';
+    src: url('rougescript.ttf'); /* Ganti path/to/open-sans.woff2 dengan lokasi file font yang sebenarnya */
+    /* Jika diperlukan, tambahkan format lain seperti woff, ttf, svg, dll */
+}
+@font-face {
+    font-family: 'Mogan';
+    src: url('mogan.ttf'); /* Ganti path/to/open-sans.woff2 dengan lokasi file font yang sebenarnya */
+    /* Jika diperlukan, tambahkan format lain seperti woff, ttf, svg, dll */
+}
+@font-face {
+    font-family: 'Wedding Script';
+    src: url('WeddingScript.ttf'); /* Ganti path/to/open-sans.woff2 dengan lokasi file font yang sebenarnya */
+    /* Jika diperlukan, tambahkan format lain seperti woff, ttf, svg, dll */
+}
+@font-face {
+    font-family: 'Spring Lake';
+    src: url('springlake.ttf'); /* Ganti path/to/open-sans.woff2 dengan lokasi file font yang sebenarnya */
+    /* Jika diperlukan, tambahkan format lain seperti woff, ttf, svg, dll */
+}
+@font-face {
+    font-family: 'Yanty Janeta';
+    src: url('YantyJaneta.ttf'); /* Ganti path/to/open-sans.woff2 dengan lokasi file font yang sebenarnya */
+    /* Jika diperlukan, tambahkan format lain seperti woff, ttf, svg, dll */
+}
+@font-face {
+    font-family: 'Stigma';
+    src: url('Stigma.otf'); 
+}
+@font-face {
+    font-family: 'edensor';
+    src: url('edensor-free.otf'); 
+}
+
+@font-face {
+    font-family: 'Foglithen';
+    src: url('FoglihtenNo07.otf'); 
+}
+.font-generator {
+    
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+}
+
+input {
+    margin-bottom: 20px;
+    width: 95%;
+    padding: 10px 5px;
+
+}
+
+.preview-wrapper {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #515151;
+    background-color: #aeaeae;
+}
+
+.preview {
+  
+    padding: 10px;
+    min-height: 50px;
+    font-size: 30px;
+    background-color: rgb(255, 255, 255);
+   
+}
+
+.font-name {
+    font-size: 14px;
+    margin: 10px;
+}
+    </style>
+</head>
+<body>
+    <div class="font-generator">
+        <h4> Cari Font Favoritmu</h4>
+        <input type="text" id="text-input" oninput="updatePreviews()" placeholder="Tulis teks di sini" value="Nama Mempelai">
+        <div class="preview-container" id="preview-container"></div>
+    </div>
+    <script>
+ function updatePreviews() {
+    var text = document.getElementById("text-input").value;
+    var previewsContainer = document.getElementById("preview-container");
+    var fonts = ["edensor","stigma",  "Rouge Script", "Yanty Janeta", "Best valentina",  "Spring Lake", "Wedding Script", "Foglithen" ];
+
+    previewsContainer.innerHTML = ""; // Mengosongkan pratinjau sebelum menambahkan yang baru
+
+    fonts.forEach(function(font) {
+        var previewWrapper = document.createElement("div");
+        previewWrapper.classList.add("preview-wrapper");
+
+        var preview = document.createElement("div");
+        preview.classList.add("preview");
+        preview.style.fontFamily = font;
+        preview.textContent = text;
+
+        var fontName = document.createElement("div");
+        fontName.classList.add("font-name");
+        fontName.textContent = font;
+
+        previewWrapper.appendChild(preview);
+        previewWrapper.appendChild(fontName);
+        previewsContainer.appendChild(previewWrapper);
+    });
+}
+window.onload = function() {
+    updatePreviews();
+}
+    </script>
+</body>
+</html>
