@@ -45,17 +45,22 @@
         }
     </style>
 </head>
-<body class="flex justify-center items-center min-h-screen bg-gray-100">
-    <div class="bg-white shadow-lg rounded-lg p-6 w-full max-w-lg text-center">
-        <h4 class="text-lg font-semibold mb-4">Cari Font Favoritmu</h4>
+<body class="flex justify-center items-center min-h-screen bg-blue-100"> <!-- Pastel pink background -->
+    <div class="bg-blue-100 shadow-lg rounded-lg p-6 w-full max-w-lg text-center"> <!-- Pastel teal card -->
+        <h4 class="text-lg font-semibold mb-4 text-gray-800">Cari Font Favoritmu</h4>
         <input type="text" id="text-input" oninput="updatePreviews()" placeholder="Tulis nama mempelai di sini" 
             class="w-full p-3 border rounded-lg mb-4 text-center text-lg">
         <div id="preview-container" class="space-y-4"></div>
+
+        <!-- Toast notification -->
+        <div id="toast" class="hidden fixed bottom-5 left-1/2 transform -translate-x-1/2 bg-green-500 text-white p-3 rounded-lg shadow-lg">
+            Font berhasil disalin!
+        </div>
     </div>
     
     <script>
         function updatePreviews() {
-            var text = document.getElementById("text-input").value;
+            var text = document.getElementById("text-input").value || 'Contoh Nama';  // Default text if empty
             var previewsContainer = document.getElementById("preview-container");
             var fonts = ["edensor", "Stigma", "Rouge Script", "Yanty Janeta", "Best valentina", "Spring Lake", "Wedding Script", "Foglithen", "Pinyon Script"];
             
@@ -68,7 +73,12 @@
                 var preview = document.createElement("div");
                 preview.classList.add("text-3xl", "bg-white", "p-4", "rounded-md");
                 preview.style.fontFamily = font;
-                preview.textContent = text;
+                preview.textContent = text;  // Show the entered text
+
+                // Font name will show as the default text before any input
+                if (text === 'Contoh Nama') {
+                    preview.textContent = font;  // Show font name if input is empty
+                }
                 
                 var fontContainer = document.createElement("div");
                 fontContainer.classList.add("flex", "items-center", "justify-between", "mt-2", "text-sm", "font-medium");
@@ -81,7 +91,7 @@
                 copyButton.innerHTML = "Copy";
                 copyButton.onclick = function() {
                     navigator.clipboard.writeText(font);
-                    alert("Font " + font + " disalin!");
+                    showToast(font);
                 };
                 
                 fontContainer.appendChild(fontName);
@@ -90,6 +100,15 @@
                 previewWrapper.appendChild(fontContainer);
                 previewsContainer.appendChild(previewWrapper);
             });
+        }
+        
+        function showToast(font) {
+            var toast = document.getElementById("toast");
+            toast.textContent = "Font " + font + " berhasil disalin!";
+            toast.classList.remove("hidden");
+            setTimeout(function() {
+                toast.classList.add("hidden");
+            }, 2000);  // Toast disappears after 2 seconds
         }
         
         window.onload = function() {
