@@ -7,7 +7,11 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&display=swap" rel="stylesheet">
     <style>
-        @font-face {
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+}        @font-face {
             font-family: 'Best valentina';
             src: url('Bestvalentina.ttf');
         }
@@ -45,11 +49,11 @@
         }
     </style>
 </head>
-<body class="flex justify-center items-center min-h-screen bg-blue-100"> <!-- Pastel pink background -->
-    <div class="bg-blue-100 shadow-lg rounded-lg p-6 w-full max-w-lg text-center"> <!-- Pastel teal card -->
-        <h4 class="text-lg font-semibold mb-4 text-gray-800">Cari Font Favoritmu</h4>
+<body class="flex justify-center items-center min-h-screen bg-white"> <!-- Pastel pink background -->
+    <div class="bg-gradient-to-r from-blue-100 to-blue-300 shadow-lg rounded-lg p-6 w-full max-w-lg text-center"> <!-- Pastel teal card -->
+        <h4 class="text-2xl mb-4 font-semibold text-black">FONT GENERATOR</h4>
         <input type="text" id="text-input" oninput="updatePreviews()" placeholder="Tulis nama mempelai di sini" 
-            class="w-full p-3 border rounded-lg mb-4 text-center text-lg">
+            class="w-full p-3 border rounded-lg mb-4 text-center text-base">
         <div id="preview-container" class="space-y-4"></div>
 
         <!-- Toast notification -->
